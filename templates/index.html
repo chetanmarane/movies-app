@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Movies</title>
+</head>
+
+<body>
+    <nav class="bg-black text-gray-500 flex justify-between items-center px-4 fixed w-full top-0 z-10">
+        <img class="h-20 p-2 ml-10 cursor-pointer" src="{{ url_for('static', filename='images/cinewars_logo.png') }}"
+            alt="logo">
+        <ul class="flex justify-around gap-12 cursor-pointer font-bold text-lg">
+            <li>HOME</li>
+            <li>MOVIES</li>
+            <li>TV SHOWS</li>
+            <li>PEOPLE</li>
+            <li>ABOUT</li>
+            <li><img class="h-8" src="{{url_for('static', filename='images/search_icon.png')}}" alt="search"></li>
+        </ul>
+    </nav>
+    <main class="bg-gray-800 pt-24 w-full min-h-screen">
+        <!-- Trending Movies -->
+        <section class="relative">
+            <header class="relative bg-gray-800 z-10">
+                <h2 class="text-white text-2xl p-2">Trending Movies</h2>
+            </header>
+            <div class="flex justify-between gap-2 pt-1 overflow-x-auto">
+                {% for poster in trending_movies %}
+                <figure
+                    class="flex-shrink-0 rounded-lg overflow-hidden border border-gray-600 hover:border-gray-400 transition duration-300">
+                    <img class="h-auto w-48 object-contain"
+                        src="https://image.tmdb.org/t/p/w500/{{ poster['poster_path'] }}.jpg"
+                        alt="{{ poster['title'] }}">
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Now Playing Movies -->
+        <section class="relative">
+            <header class="relative bg-gray-800 z-10">
+                <h2 class="text-white text-2xl p-2">Now Playing</h2>
+            </header>
+            <div class="flex justify-between gap-2 pt-1 overflow-x-auto">
+                {% for poster in now_playing_movies %}
+                <figure
+                    class="flex-shrink-0 rounded-lg overflow-hidden border border-gray-600 hover:border-gray-400 transition duration-300">
+                    <img class="h-auto w-48 object-contain"
+                        src="https://image.tmdb.org/t/p/w500/{{ poster['poster_path'] }}.jpg"
+                        alt="{{ poster['title'] }}">
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Trending Shows -->
+        <section class="relative">
+            <header class="relative bg-gray-800 z-10">
+                <h2 class="text-white text-2xl p-2">Trending Shows</h2>
+            </header>
+            <div class="flex justify-between gap-2 pt-1 overflow-x-auto">
+                {% for poster in trending_shows %}
+                <figure
+                    class="flex-shrink-0 rounded-lg overflow-hidden border border-gray-600 hover:border-gray-400 transition duration-300">
+                    <img class="h-auto w-48 object-contain"
+                        src="https://image.tmdb.org/t/p/w500/{{ poster['poster_path'] }}.jpg"
+                        alt="{{ poster['title'] }}">
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Trending People -->
+        <section class="relative">
+            <header class="relative bg-gray-800 z-10">
+                <h2 class="text-white text-2xl p-2">Trending People on Google</h2>
+            </header>
+            <div class="flex justify-between gap-2 pt-1 overflow-x-auto">
+                {% for poster in trending_people %}
+                <figure
+                    class="flex-shrink-0 rounded-lg overflow-hidden border border-gray-600 hover:border-gray-400 transition duration-300">
+                    <img class="h-auto w-48 object-contain"
+                        src="https://image.tmdb.org/t/p/w500/{{ poster['profile_path'] }}.jpg"
+                        alt="{{ poster['title'] }}">
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+
+
+</html>
